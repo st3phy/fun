@@ -1,6 +1,6 @@
 const { addTwoNumbers } = require("../src/2-add-two.js");
 
-test("Add Two Numbers", async () => {
+describe("Add Two Numbers", () => {
     const tests = [
         {
             args: [
@@ -23,7 +23,9 @@ test("Add Two Numbers", async () => {
     ];
 
     for (const { args, res } of tests) {
-        const result = listToArray(addTwoNumbers(...args.map(arrayToList)));
-        expect(result).toStrictEqual(res);
+        test(`${JSON.stringify(args[0])} + ${JSON.stringify(args[1])} = ${JSON.stringify(res)}`, () => {
+            const result = listToArray(addTwoNumbers(...args.map(arrayToList)));
+            expect(result).toStrictEqual(res);
+        });
     }
 });

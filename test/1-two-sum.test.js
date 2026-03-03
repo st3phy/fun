@@ -1,6 +1,6 @@
 const { twoSum } = require("../src/1-two-sum.js");
 
-test("Two sum", async () => {
+describe("Two sum", () => {
     const tests = [
         {
             args: [[2, 7, 11, 15], 9],
@@ -17,6 +17,8 @@ test("Two sum", async () => {
     ];
 
     for (const { args, res } of tests) {
-        expect(twoSum(...args)).toStrictEqual(res);
+        test(`${JSON.stringify(args[0])} sum ${args[1]}: ${JSON.stringify(res)}`, () => {
+            expect(twoSum(...args)).toStrictEqual(res);
+        });
     }
 });
