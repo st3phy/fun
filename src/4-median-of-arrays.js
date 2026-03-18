@@ -60,11 +60,12 @@ const findMedianSortedArraysMN = function (nums1, nums2) {
  * @param {number[]} nums2
  * @return {number}
  */
-const findMedianSortedArrays = function (nums1, nums2) {
+const findMedianSortedArraysVerbose = function (nums1, nums2) {
     if (nums1.length > nums2.length) {
-        return findMedianSortedArrays(nums2, nums1);
+        const aux = nums1;
+        nums1 = nums2;
+        nums2 = aux;
     }
-
     // Half of merged array length
     const middle = Math.floor((nums1.length + nums2.length + 1) / 2);
 
@@ -87,8 +88,29 @@ const findMedianSortedArrays = function (nums1, nums2) {
         const left2 = 0 === p2 ? -Infinity : nums2[p2 - 1];
         const right2 = nums2.length === p2 ? Infinity : nums2[p2];
 
+        const STR_PAD = 3;
+        console.log(
+            `[ ${nums1.map(n => `${n}`.padStart(STR_PAD, " "))} ][ ${nums2.map(n =>
+                `${n}`.padStart(STR_PAD, " ")
+            )} ] @ (${left}, ${right})`
+        );
+        console.log(
+            " ".repeat(`[ ${[...nums1, "*"].slice(0, p1).map(n => `${n}`.padStart(STR_PAD, " "))} ]`.length - 1) +
+                `L[${p1}]: ${left1}|${right1}`
+        );
+        console.log(
+            " ".repeat(
+                `[ ${nums1.map(n => `${n}`.padStart(STR_PAD, " "))} ]`.length +
+                    `[ ${[...nums2, "*"].slice(0, p2).map(n => `${n}`.padStart(STR_PAD, " "))} ]`.length -
+                    1
+            ) + `R[${p2}]: ${left2}|${right2}`
+        );
+
         // Found our true median
         if (left1 <= right2 && left2 <= right1) {
+            console.log(`  ... ${Math.max(left1, left2)} | ${Math.min(right1, right2)} ...`);
+            console.log(`${"#".repeat(17)}\n\n`);
+
             return 0 === (nums1.length + nums2.length) % 2
                 ? (Math.max(left1, left2) + Math.min(right1, right2)) / 2
                 : Math.max(left1, left2);
@@ -97,8 +119,50 @@ const findMedianSortedArrays = function (nums1, nums2) {
         if (left1 > right2) {
             // Ignore right side of Partition
             right = p1;
+            console.log(`<< left = ${left}, right = ${p1}`);
         } else {
             // Ignore left side of Partition
+            left = p1 + 1;
+            console.log(`>> left = ${p1} + 1, right = ${right}`);
+        }
+
+        console.log(`\n`);
+    }
+};
+
+const findMedianSortedArrays = function (nums1, nums2) {
+    if (nums1.length > nums2.length) {
+        const aux = nums1;
+        nums1 = nums2;
+        nums2 = aux;
+    }
+
+    const middle = Math.floor((nums1.length + nums2.length + 1) / 2);
+
+    let left = 0;
+    let right = nums1.length;
+
+    while (left <= right) {
+        const p1 = Math.floor((left + right) / 2);
+        const p2 = middle - p1;
+
+        const l1 = nums1[p1 - 1] ?? -Infinity;
+        const r1 = nums1[p1] ?? Infinity;
+
+        const l2 = nums2[p2 - 1] ?? -Infinity;
+        const r2 = nums2[p2] ?? Infinity;
+
+        if (l1 <= r2 && l2 <= r1) {
+            return 0 === (nums1.length + nums2.length) % 2
+                ? (Math.max(l1, l2) + Math.min(r1, r2)) / 2
+                : Math.max(l1, l2);
+        }
+
+        if (l1 > r2) {
+            // go to left
+            right = p1;
+        } else {
+            // go to right
             left = p1 + 1;
         }
     }
@@ -106,4 +170,4 @@ const findMedianSortedArrays = function (nums1, nums2) {
 
 module.exports = { findMedianSortedArrays, findMedianSortedArraysMN };
 
-console.log(findMedianSortedArrays([1, 3], [2]));
+console.log(findMedianSortedArrays([1, 6], [2, 3, 7, 9, 10]));

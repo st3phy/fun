@@ -1,3 +1,5 @@
+global.console = require("console");
+
 global.arrayToList = values => {
     const result = {
         val: null,
