@@ -99,6 +99,30 @@ module.exports = { ${fnName} };\n`
             .replace(/^\d+\s/gi, "")
             .toLowerCase()
             .split(" ")
+
+            // Remove prepositions
+            .filter(
+                w =>
+                    ![
+                        "a",
+                        "about",
+                        "as",
+                        "at",
+                        "by",
+                        "for",
+                        "from",
+                        "if",
+                        "in",
+                        "into",
+                        "of",
+                        "on",
+                        "out",
+                        "to",
+                        "the",
+                        "until",
+                        "with"
+                    ].includes(w)
+            )
             .slice(0, 3)
             .join("-")}`;
 
