@@ -6,7 +6,7 @@ const INT_MAX = 2 ** 31 - 1;
  * @param {string} string
  * @return {number}
  */
-var myAtoi = function (string) {
+const myAtoi = function (string) {
     let numInit = false;
     let numSigned = false;
     let numPositive = true;

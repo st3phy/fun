@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const spawn = require("cross-spawn");
 const prompts = require("prompts");
 
 const formatProblem = v =>
@@ -81,6 +80,7 @@ module.exports = { ${fnName} };\n`
                 }
 
                 acc[v] = 1;
+
                 return acc;
             }, {});
         idNext++;
