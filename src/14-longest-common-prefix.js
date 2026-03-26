@@ -4,7 +4,7 @@
  */
 const longestCommonPrefix = strs => {
     // Start with the first word
-    let result = strs[0];
+    const result = strs[0];
 
     // Prepare the maximum index
     let indexMax = strs[0].length;

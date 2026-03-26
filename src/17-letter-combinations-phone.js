@@ -1,26 +1,22 @@
-const KEYPAD = { 2: "abc", 3: "def", 4: "ghi", 5: "jkl", 6: "mno", 7: "pqrs", 8: "tuv", 9: "wxyz" };
-
 /**
  * @param {string} digits
  * @return {string[]}
  */
 const letterCombinations = digits => {
+    const KEYPAD = { 2: "abc", 3: "def", 4: "ghi", 5: "jkl", 6: "mno", 7: "pqrs", 8: "tuv", 9: "wxyz" };
+
+    // Prepare hashmap of how many times each letter is used before advancing in the dictionary
+    const repeatMap = [];
+
     // Calculate final result size
     let rLength = 1;
-    for (let i = 0; i < digits.length; i++) {
+    for (let i = digits.length - 1; i >= 0; i--) {
+        repeatMap[i] = rLength;
         rLength *= KEYPAD[digits[i]].length;
     }
 
-    // Prepare hashmap of how many times each letter is used before advancing in the dictionary
-    const repeatMap = {};
-    let repeatTimes = rLength;
-    for (let i = 0; i < digits.length; i++) {
-        repeatTimes /= KEYPAD[digits[i]].length;
-        repeatMap[i] = repeatTimes;
-    }
-
     // Prepare final result
-    let result = [];
+    const result = [];
     for (let i = 0; i < rLength; i++) {
         result[i] = "";
 

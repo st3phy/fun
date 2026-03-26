@@ -19,7 +19,7 @@ const threeSum = nums => {
         }
 
         // Traverse the first occurences
-        for (let i of firsts) {
+        for (const i of firsts) {
             // No solution possible from this point
             if (nums[i] > 0) {
                 break;

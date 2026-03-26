@@ -10,6 +10,7 @@ module.exports = {
     ignorePatterns: ["node_modules/", "out/", ".next/"],
     plugins: ["import", "unused-imports", "prettier"],
     rules: {
+        "valid-jsdoc": "off",
         "spaced-comment": "off",
         "newline-before-return": "off",
         "space-before-function-paren": "off",
