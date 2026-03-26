@@ -28,7 +28,7 @@ global.listToArray = list => {
     const result = [];
     let node = list;
 
-    while (node) {
+    while (node && "undefined" !== typeof node.val) {
         if (null !== node.val) {
             result.push(node.val);
         }
