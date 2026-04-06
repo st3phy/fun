@@ -11,7 +11,7 @@
  * @return {ListNode}
  */
 const mergeTwoLists = (listA, listB) => {
-    let mergedHead = { next: null };
+    const mergedHead = { next: null };
     let mergedPointer = mergedHead;
 
     // Iterate through the two lists to the end

@@ -105,6 +105,7 @@ module.exports = { ${fnName} };\n`
                 w =>
                     ![
                         "a",
+                        "and",
                         "about",
                         "as",
                         "at",

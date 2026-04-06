@@ -9,8 +9,8 @@ const spawn = require("cross-spawn");
     const jestArgs = ["--verbose", "--runInBand", "--passWithNoTests"];
 
     // If a test name prefix is provided, add -t
-    if (testArg) {
-        jestArgs.push("--testPathPattern", `^.*${testArg}-.*\\.test\\.js$`);
+    if (testArg.length > 0) {
+        jestArgs.push("--testPathPattern", `\\b${testArg}-.*\\.test\\.js$`);
     }
 
     // Forward any additional args (optional)

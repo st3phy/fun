@@ -6,7 +6,7 @@ const isValid = str => {
     const PAIRS = { "(": ")", "[": "]", "{": "}" };
 
     // Watch for open pairs
-    let pairOpen = [];
+    const pairOpen = [];
     for (let i = 0; i < str.length; i++) {
         // Store corresponding closing pair
         if (PAIRS[str[i]]) {
