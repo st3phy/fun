@@ -10,7 +10,7 @@ const spawn = require("cross-spawn");
 
     // If a test name prefix is provided, add -t
     if (testArg.length > 0) {
-        jestArgs.push("--testPathPattern", `\\b${testArg}-.*\\.test\\.js$`);
+        jestArgs.push("--testPathPattern", `\\btest[/\\\\]${testArg}-.*\\.test\\.js$`);
     }
 
     // Forward any additional args (optional)
