@@ -3,13 +3,18 @@
  * @return {number}
  */
 const countSegments = s => {
-    // Regular expression to match any non-whitespace character one or more consecutive times
-    const regex = /\S+/g;
+    // If the first character exists and is not a whitespace, we have our first word
+    let count = s[0] && s[0] !== " " ? 1 : 0;
 
-    // Store all words in the string *match() returns null if there are no matches, so default to empty array
-    const words = s.match(regex) || [];
+    // Go through rest of string
+    for (let i = 1; i < s.length; i++) {
+        // If the current character is not a space, but the previous one was, we are at the start of a new word
+        if (s[i] !== " " && s[i - 1] === " ") {
+            count++;
+        }
+    }
 
-    return words.length;
+    return count;
 };
 
 module.exports = { countSegments };
